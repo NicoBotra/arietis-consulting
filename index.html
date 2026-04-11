@@ -27,8 +27,8 @@ nav a.active{color:var(--cyan)}
 .lang-btn:hover{color:var(--cyan);border-color:var(--cyan)}
 .lang-btn svg{width:12px;height:12px;transition:transform 0.2s}
 .lang-dropdown{display:none;position:absolute;right:0;top:calc(100% + 8px);background:var(--white);border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.1);min-width:150px;overflow:hidden;z-index:200}
-.lang-switcher:hover .lang-dropdown{display:block}
-.lang-switcher:hover .lang-btn svg{transform:rotate(180deg)}
+.lang-dropdown.open{display:block}
+.lang-btn.open svg{transform:rotate(180deg)}
 .lang-dropdown a{display:flex;align-items:center;gap:8px;padding:11px 16px;font-size:13px;color:var(--gray);text-decoration:none;transition:background 0.15s}
 .lang-dropdown a:hover{background:#f8fafc;color:var(--cyan)}
 .lang-dropdown a.active{color:var(--cyan);font-weight:600}
@@ -238,12 +238,28 @@ footer a{font-size:12px;color:var(--cyan);text-decoration:none}
 </footer>
 
 <script>
+// Language switcher — click based
+const langBtn = document.getElementById('langBtn');
+const langDropdown = langBtn.nextElementSibling;
+langBtn.addEventListener('click', function(e){
+  e.stopPropagation();
+  langBtn.classList.toggle('open');
+  langDropdown.classList.toggle('open');
+});
+document.addEventListener('click', function(){
+  langBtn.classList.remove('open');
+  langDropdown.classList.remove('open');
+});
+
 function setLang(code,flag,label){
   document.getElementById('langLabel').textContent=label;
   document.getElementById('langBtn').querySelector('span').textContent=flag;
   document.querySelectorAll('.lang-dropdown a').forEach(a=>a.classList.remove('active'));
   event.target.closest('a').classList.add('active');
+  langBtn.classList.remove('open');
+  langDropdown.classList.remove('open');
 }
+
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
     const t=document.querySelector(a.getAttribute('href'));
