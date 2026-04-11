@@ -214,11 +214,11 @@ footer a{font-size:12px;color:var(--cyan);text-decoration:none}
       </div>
       <div class="hr-features">
         <div class="hr-feature"><div class="hr-dot"></div>Répondez à tous vos avis Google en quelques clics</div>
+        <div class="hr-feature"><div class="hr-dot"></div>Import automatique de vos avis Google Maps</div>
         <div class="hr-feature"><div class="hr-dot"></div>Suivez l’évolution de votre note Google Maps jour par jour</div>
         <div class="hr-feature"><div class="hr-dot"></div>Analyse automatique des avis négatifs pour progresser</div>
         <div class="hr-feature"><div class="hr-dot"></div>Rapports hebdomadaires sur votre réputation en ligne</div>
         <div class="hr-feature"><div class="hr-dot"></div>Disponible en 7 langues — français, néerlandais, anglais et plus</div>
-        <div class="hr-feature"><div class="hr-dot"></div>Import automatique de vos avis Google Maps</div>
       </div>
     </div>
   </div>
@@ -239,6 +239,177 @@ footer a{font-size:12px;color:var(--cyan);text-decoration:none}
 </footer>
 
 <script>
+// Translation data
+const translations = {
+  fr: {
+    nav_expertises: "Expertises",
+    nav_helloreviews: "HelloReviews",
+    nav_contact: "Contact",
+    nav_cta: "Prendre contact",
+    hero_title_bold: "Consulting stratégique",
+    hero_title_light: "& innovation digitale",
+    hero_desc: "Nous accompagnons les dirigeants dans leur développement commercial et proposons des solutions innovantes dans le domaine du digital.",
+    btn_services: "Découvrir nos expertises",
+    btn_hr: "Essayer HelloReviews gratuitement →",
+    s01_title: "Développement commercial",
+    s01_sub: "Stratégie · Prospection · Partenariats",
+    s01_desc: "Stratégie de croissance, prospection ciblée et développement de partenariats stratégiques.",
+    s02_title: "Marketing & communication",
+    s02_sub: "Marque · PR · Visibilité digitale",
+    s02_desc: "Positionnement de marque, relations presse et visibilité digitale adaptée à vos marchés.",
+    s03_title: "Gestion de la performance",
+    s03_sub: "P&L · Optimisation · Rentabilité",
+    s03_desc: "P&L management, optimisation des coûts et amélioration de la rentabilité opérationnelle.",
+    s04_title: "Direction ad interim",
+    s04_sub: "Transition · Continuité · Leadership",
+    s04_desc: "Management de transition pour assurer continuité et leadership dans les moments clés.",
+    about: "Arietis Consulting SRL accompagne les entreprises dans leur développement commercial et opérationnel. Business development, marketing, gestion de la performance ou direction ad interim — chaque mission est menée avec un objectif clair : des résultats mesurables.",
+    hr_label: "Notre produit — HelloReviews",
+    hr_title: "HelloReviews",
+    hr_desc: "HelloReviews est une solution logicielle développée par Arietis Consulting, permettant aux établissements — restaurants, hôtels, salons et commerces de proximité — de gérer et répondre à leurs avis Google Maps grâce à l’intelligence artificielle. La solution utilise l’API Google Business Profile pour synchroniser les avis et fournir des analyses automatiques permettant aux gérants d’améliorer continuellement leur réputation en ligne.",
+    hr_link: "Visiter helloreviews.be →",
+    f1: "Répondez à tous vos avis Google en quelques clics",
+    f2: "Import automatique de vos avis Google Maps",
+    f3: "Suivez l’évolution de votre note Google Maps jour par jour",
+    f4: "Analyse automatique des avis négatifs pour progresser",
+    f5: "Rapports hebdomadaires sur votre réputation en ligne",
+    f6: "Disponible en 7 langues — français, néerlandais, anglais et plus",
+    addr_label: "Adresse",
+    contact_label: "Contact",
+    legal_label: "Registre légal",
+    footer: "Tous droits réservés"
+  },
+  en: {
+    nav_expertises: "Expertise",
+    nav_helloreviews: "HelloReviews",
+    nav_contact: "Contact",
+    nav_cta: "Get in touch",
+    hero_title_bold: "Strategic consulting",
+    hero_title_light: "& digital innovation",
+    hero_desc: "We support business leaders in their commercial development and offer innovative digital solutions.",
+    btn_services: "Discover our expertise",
+    btn_hr: "Try HelloReviews for free →",
+    s01_title: "Business development",
+    s01_sub: "Strategy · Prospecting · Partnerships",
+    s01_desc: "Growth strategy, targeted prospecting and development of strategic partnerships.",
+    s02_title: "Marketing & communication",
+    s02_sub: "Brand · PR · Digital visibility",
+    s02_desc: "Brand positioning, press relations and digital visibility tailored to your markets.",
+    s03_title: "Performance management",
+    s03_sub: "P&L · Optimisation · Profitability",
+    s03_desc: "P&L management, cost optimisation and improvement of operational profitability.",
+    s04_title: "Interim management",
+    s04_sub: "Transition · Continuity · Leadership",
+    s04_desc: "Transition management to ensure continuity and leadership at key moments.",
+    about: "Arietis Consulting SRL supports businesses in their commercial and operational development. Business development, marketing, performance management or interim management — every mission is driven by one clear goal: measurable results.",
+    hr_label: "Our product — HelloReviews",
+    hr_title: "HelloReviews",
+    hr_desc: "HelloReviews is a software solution developed by Arietis Consulting, enabling establishments — restaurants, hotels, salons and local businesses — to manage and respond to their Google Maps reviews using artificial intelligence. The solution uses the Google Business Profile API to synchronise reviews and provide automatic analysis to help managers continuously improve their online reputation.",
+    hr_link: "Visit helloreviews.be →",
+    f1: "Respond to all your Google reviews in just a few clicks",
+    f2: "Automatic import of your Google Maps reviews",
+    f3: "Track your Google Maps rating day by day",
+    f4: "Automatic analysis of negative reviews to improve",
+    f5: "Weekly reports on your online reputation",
+    f6: "Available in 7 languages — French, Dutch, English and more",
+    addr_label: "Address",
+    contact_label: "Contact",
+    legal_label: "Legal register",
+    footer: "All rights reserved"
+  },
+  nl: {
+    nav_expertises: "Expertises",
+    nav_helloreviews: "HelloReviews",
+    nav_contact: "Contact",
+    nav_cta: "Neem contact op",
+    hero_title_bold: "Strategisch consulting",
+    hero_title_light: "& digitale innovatie",
+    hero_desc: "Wij begeleiden bedrijfsleiders in hun commerciële ontwikkeling en bieden innovatieve digitale oplossingen.",
+    btn_services: "Ontdek onze expertise",
+    btn_hr: "Probeer HelloReviews gratis →",
+    s01_title: "Commerciële ontwikkeling",
+    s01_sub: "Strategie · Prospectie · Partnerschappen",
+    s01_desc: "Groeistrategie, gerichte prospectie en ontwikkeling van strategische partnerschappen.",
+    s02_title: "Marketing & communicatie",
+    s02_sub: "Merk · PR · Digitale zichtbaarheid",
+    s02_desc: "Merkpositionering, persrelaties en digitale zichtbaarheid op maat van uw markten.",
+    s03_title: "Prestatiebeheer",
+    s03_sub: "P&L · Optimalisatie · Rentabiliteit",
+    s03_desc: "P&L-beheer, kostenoptimalisatie en verbetering van de operationele rentabiliteit.",
+    s04_title: "Interim management",
+    s04_sub: "Transitie · Continuiteit · Leiderschap",
+    s04_desc: "Transitiemanagement voor continuiteit en leiderschap op cruciale momenten.",
+    about: "Arietis Consulting SRL begeleidt bedrijven in hun commerciële en operationele ontwikkeling. Business development, marketing, prestatiebeheer of interim management — elke opdracht wordt uitgevoerd met één duidelijk doel: meetbare resultaten.",
+    hr_label: "Ons product — HelloReviews",
+    hr_title: "HelloReviews",
+    hr_desc: "HelloReviews is een softwareoplossing ontwikkeld door Arietis Consulting, waarmee horecazaken, hotels, salons en lokale handelszaken hun Google Maps-beoordelingen kunnen beheren en beantwoorden via artificiële intelligentie. De oplossing gebruikt de Google Business Profile API om beoordelingen te synchroniseren en automatische analyses te bieden.",
+    hr_link: "Bezoek helloreviews.be →",
+    f1: "Beantwoord al uw Google-beoordelingen in een paar klikken",
+    f2: "Automatische import van uw Google Maps-beoordelingen",
+    f3: "Volg uw Google Maps-score dag na dag",
+    f4: "Automatische analyse van negatieve beoordelingen",
+    f5: "Wekelijkse rapporten over uw online reputatie",
+    f6: "Beschikbaar in 7 talen — Frans, Nederlands, Engels en meer",
+    addr_label: "Adres",
+    contact_label: "Contact",
+    legal_label: "Juridisch register",
+    footer: "Alle rechten voorbehouden"
+  }
+};
+
+function applyLang(lang) {
+  const t = translations[lang];
+  if (!t) return;
+  // Nav
+  document.querySelector('a[href="#services"]').textContent = t.nav_expertises;
+  document.querySelector('.nav-cta').textContent = t.nav_cta;
+  // Hero
+  document.querySelector('.hero-title-bold').textContent = t.hero_title_bold;
+  document.querySelector('.hero-title-light').innerHTML = t.hero_title_light;
+  document.querySelector('.hero-desc').textContent = t.hero_desc;
+  document.querySelector('.btn-primary').textContent = t.btn_services;
+  document.querySelector('.btn-ghost').textContent = t.btn_hr;
+  // Services desktop
+  const desktopCards = document.querySelectorAll('#services .service-card-dark');
+  if (desktopCards.length >= 4) {
+    desktopCards[0].querySelector('h3').textContent = t.s01_title;
+    desktopCards[0].querySelector('p').textContent = t.s01_sub;
+    desktopCards[1].querySelector('h3').textContent = t.s02_title;
+    desktopCards[1].querySelector('p').textContent = t.s02_sub;
+    desktopCards[2].querySelector('h3').textContent = t.s03_title;
+    desktopCards[2].querySelector('p').textContent = t.s03_sub;
+    desktopCards[3].querySelector('h3').textContent = t.s04_title;
+    desktopCards[3].querySelector('p').textContent = t.s04_sub;
+  }
+  // Services section
+  const svcNums = document.querySelectorAll('#services ~ div [style*="font-size:15px"][style*="font-weight:600"]');
+  const svcDescs = document.querySelectorAll('#services ~ div [style*="font-size:13px"][style*="color:#94a3b8"]');
+  const titles = [t.s01_title, t.s02_title, t.s03_title, t.s04_title];
+  const descs = [t.s01_desc, t.s02_desc, t.s03_desc, t.s04_desc];
+  svcNums.forEach((el, i) => { if (titles[i]) el.textContent = titles[i]; });
+  svcDescs.forEach((el, i) => { if (descs[i]) el.textContent = descs[i]; });
+  // About
+  document.querySelector('.about-strip-text').innerHTML = t.about;
+  // HelloReviews
+  document.querySelector('.section-label').textContent = t.hr_label;
+  document.querySelector('.hr-title').textContent = t.hr_title;
+  document.querySelector('.hr-desc').textContent = t.hr_desc;
+  document.querySelector('.hr-link').textContent = t.hr_link;
+  // Features
+  const dots = document.querySelectorAll('.hr-feature');
+  const feats = [t.f1, t.f2, t.f3, t.f4, t.f5, t.f6];
+  dots.forEach((el, i) => { if (feats[i]) el.childNodes[1].textContent = feats[i]; });
+  // Contact labels
+  const contactLabels = document.querySelectorAll('.contact-label');
+  if (contactLabels[0]) contactLabels[0].textContent = t.addr_label;
+  if (contactLabels[1]) contactLabels[1].textContent = t.contact_label;
+  if (contactLabels[2]) contactLabels[2].textContent = t.legal_label;
+  // Footer
+  document.querySelector('footer span').innerHTML = '<span id="yr"></span> Arietis Consulting SRL — ' + t.footer;
+  document.getElementById('yr').textContent = '© ' + new Date().getFullYear();
+  localStorage.setItem('lang', lang);
+}
+
 // Language switcher — click based
 const langBtn = document.getElementById('langBtn');
 const langDropdown = langBtn.nextElementSibling;
@@ -259,8 +430,18 @@ function setLang(code,flag,label){
   event.target.closest('a').classList.add('active');
   langBtn.classList.remove('open');
   langDropdown.classList.remove('open');
+  applyLang(code);
 }
 
+// Apply saved language on load
+const savedLang = localStorage.getItem('lang') || 'fr';
+if (savedLang !== 'fr') {
+  const flags = {en:'🇬🇧', nl:'🇳🇱'};
+  const labels = {en:'English', nl:'Nederlands'};
+  document.getElementById('langLabel').textContent = labels[savedLang];
+  document.getElementById('langBtn').querySelector('span').textContent = flags[savedLang];
+  applyLang(savedLang);
+}
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
     const t=document.querySelector(a.getAttribute('href'));
