@@ -34,7 +34,7 @@ nav a.active{color:var(--cyan)}
 .lang-dropdown a.active{color:var(--cyan);font-weight:600}
 .hero{margin-top:60px;min-height:680px;background-image:url('https://www.arietis-consulting.eu/wp-content/uploads/2026/04/Arietis-consulting.jpg');background-size:cover;background-position:center 35%;background-repeat:no-repeat;background-color:#0f1117;position:relative;display:flex;align-items:center}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,14,26,0.96) 30%,rgba(10,14,26,0.75) 55%,rgba(10,14,26,0.15) 100%)}
-.hero-inner{position:relative;z-index:1;padding:80px 5%;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.hero-inner{position:relative;z-index:1;padding:90px 7%;width:100%;display:flex;flex-direction:column;justify-content:center;max-width:640px}
 .hero-title-bold{font-size:52px;font-weight:700;color:var(--white);line-height:1.05;letter-spacing:-2px;margin-bottom:6px}
 .hero-title-light{font-size:52px;font-weight:300;color:var(--cyan);line-height:1.05;letter-spacing:-2px;margin-bottom:28px}
 .hero-desc{font-size:15px;color:rgba(255,255,255,0.72);line-height:1.85;margin-bottom:36px;max-width:440px}
@@ -43,7 +43,7 @@ nav a.active{color:var(--cyan)}
 .btn-primary:hover{background:var(--cyan-dark)}
 .btn-ghost{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.25);color:var(--white);padding:14px 28px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;display:inline-block;transition:background 0.2s}
 .btn-ghost:hover{background:rgba(255,255,255,0.15)}
-.hero-right{display:flex;flex-direction:column;gap:12px}
+.hero-right{display:none}
 .service-card-dark{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:18px 22px;display:flex;align-items:center;gap:18px;transition:background 0.2s,border-color 0.2s}
 .service-card-dark:hover{background:rgba(0,180,216,0.1);border-color:rgba(0,180,216,0.3)}
 .service-num{font-size:22px;font-weight:300;color:var(--cyan);min-width:32px;letter-spacing:-0.5px}
@@ -107,7 +107,20 @@ footer a{font-size:12px;color:var(--cyan);text-decoration:none}
 <body>
 <header>
   <a href="/" class="logo">
-    <img src="https://www.arietis-consulting.eu/wp-content/uploads/2025/11/cropped-arietis_logo_transparent.png" alt="Arietis Consulting" style="height:44px;width:auto;">
+    <img src="https://www.arietis-consulting.eu/wp-content/uploads/2025/11/cropped-arietis_logo_transparent.png" 
+         alt="Arietis Consulting" 
+         style="height:44px;width:auto;"
+         onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='flex'">
+    <div id="logo-fallback" style="display:none;align-items:center;gap:8px;">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M16 3L13 16L16 29L19 16Z" fill="#00B4D8"/>
+        <path d="M3 16L16 13L29 16L16 19Z" fill="#00B4D8" opacity=".6"/>
+      </svg>
+      <div>
+        <div style="font-size:15px;font-weight:700;color:#0f172a;line-height:1.1">Arietis Consulting</div>
+        <div style="font-size:9px;color:#00B4D8;letter-spacing:1px">More brilliant together</div>
+      </div>
+    </div>
   </a>
   <nav>
     <a href="#services">Consulting</a>
