@@ -236,7 +236,7 @@ footer a{font-size:12px;color:var(--cyan);text-decoration:none}
 <footer>
   <span><span id="yr"></span> Arietis Consulting SRL — Tous droits réservés</span>
   <span class="footer-badge">Société belge · Bruxelles · BE 0688.954.772</span>
-  <a href="mailto:hello@arietis-consulting.eu">Politique de confidentialité</a>
+  <a href="https://helloreviews.be/privacy" target="_blank">Politique de confidentialité</a>
 </footer>
 
 <script>
@@ -408,6 +408,8 @@ function applyLang(lang) {
   // Footer
   document.querySelector('footer span').innerHTML = '<span id="yr"></span> Arietis Consulting SRL — ' + t.footer;
   document.getElementById('yr').textContent = '© ' + new Date().getFullYear();
+  const privacyLink = document.querySelector('footer a');
+  if (privacyLink && t.privacy) privacyLink.textContent = t.privacy;
   localStorage.setItem('lang', lang);
 }
 
@@ -450,6 +452,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 document.getElementById('yr').textContent = '© ' + new Date().getFullYear();
+  const privacyLink = document.querySelector('footer a');
+  if (privacyLink && t.privacy) privacyLink.textContent = t.privacy;
 window.addEventListener('scroll',()=>{
   document.querySelector('header').style.boxShadow=window.scrollY>10?'0 1px 20px rgba(0,0,0,0.08)':'none';
 });
